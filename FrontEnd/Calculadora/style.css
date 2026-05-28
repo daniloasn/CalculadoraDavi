@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e1e1e, #2b2b2b);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+h1 {
+    color: #00ffcc;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+h1:hover {
+    background-color: rgba(0, 255, 204, 0.1);
+}
+
+
+.painel {
+    background: #0f0f0f;
+    width: 400px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.9);
+}
+
+
+#resultado {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+#display {
+    width: 100%;
+    height: 90px;
+
+    font-size: 2.5em;
+    text-align: right;
+
+    padding: 15px;
+    
+    border: none;
+    border-radius: 14px;
+
+    background: #050505;
+    color: #00ffcc;
+
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.9);
+
+    outline: none;
+}
+
+
+#teclas {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    gap: 15px;
+    justify-content: center;
+}
+
+
+.botoes {
+    background: linear-gradient(145deg, #2e2e2e, #1a1a1a);
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    border: none;
+    color: white;
+    cursor: pointer;
+
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8), 
+                -2px -2px 6px rgba(255,255,255,0.05);
+
+    transition: all 0.2s ease;
+}
+
+.botoes:hover {
+    background: linear-gradient(145deg, #3a3a3a, #222);
+}
+
+.botoes:active {
+    transform: scale(0.92);
+    box-shadow: inset 2px 2px 6px rgba(0,0,0,0.8);
+}
+
+
+.operador {
+    background: linear-gradient(145deg, #ff9500, #cc7700);
+}
+
+
+#igual {
+    background: linear-gradient(145deg, #00ffcc, #00c9a7);
+    color: black;
+    font-weight: bold;
+}
+
+
+button[data-valor="0"] {
+    grid-column: 2;
+}
+
+
+.hidden {
+    display: none;
+}
+
+#dois {
+    width: 300px;
+    margin-left: 15px;
+    animation: aparecer 0.3s ease;
+}
+
+#hist {
+    background: #050505;
+    color: #00ffcc;
+    padding: 15px;
+    border-radius: 12px;
+    height: 500px;
+    overflow-y: auto;
+    font-size: 1.1em;
+}
+
+
+#hist p {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#hist p:hover {
+    background-color: rgba(0,255,204,0.1);
+}
+
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
