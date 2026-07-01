@@ -1,18 +1,25 @@
-CREATE TABLE historico (
+
+DROP TABLE IF EXISTS historico;
+DROP TABLE IF EXISTS usuarios;
+
+CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER,
-    expressao TEXT,
-    resultado TEXT,
+    nome TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    senha TEXT NOT NULL,
+    tipo TEXT DEFAULT 'gratuito' CHECK (tipo IN ('gratuito', 'pago')),
+    instituicao TEXT,
+    escolaridade TEXT,
+    endereco TEXT,
+    usos_mes INTEGER DEFAULT 0,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE usuarios (
-	id SERIAL PRIMARY KEY,
-	nome TEXT NOT NULL,
-	email TEXT UNIQUE
+CREATE TABLE historico (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER REFERENCES usuarios(id),
+    expressao TEXT,
+    resultado TEXT,
+    operacao TEXT,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-insert into historico (usuario_id, expressao, resultado) values (1, '2+2', '4')
-
-select * from historico
-select * from usuarios

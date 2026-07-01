@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +7,101 @@
     <title>CalculadoraDavi</title>
 </head>
 <body>
-    <div class="painel">
-        <div id="resultado">
-            <h1 onclick="toggleHistorico()">Histórico</h1>
-            <input type="text" id="display" disabled>
-        </div>
-            <div id="teclas">
-                <button class="botoes" data-valor="clear">C</button>
-                <button class="botoes" data-valor="()">()</button>
-                <button class="botoes operador" data-valor="/">÷</button>
-                <button class="botoes operador" data-valor="*">X</button>
 
-                <button class="botoes numero" data-valor="7">7</button>
-                <button class="botoes numero" data-valor="8">8</button>
-                <button class="botoes numero" data-valor="9">9</button>
-                <button class="botoes operador" data-valor="-">-</button>
+<div class="tela-principal">
 
-                <button class="botoes numero" data-valor="4">4</button>
-                <button class="botoes numero" data-valor="5">5</button>
-                <button class="botoes numero" data-valor="6">6</button>
-                <button class="botoes operador" data-valor="+">+</button>
-
-                <button class="botoes numero" data-valor="1">1</button>
-                <button class="botoes numero" data-valor="2">2</button>
-                <button class="botoes numero" data-valor="3">3</button>
-                <button class="botoes" id="igual" data-valor="=">=</button>
-
-                <button class="botoes numero" data-valor="0">0</button>
-        </div>
-    </div>
-
-    <div id="dois" class="painel hidden">
+    <!-- Painel lateral: histórico -->
+    <div id="dois" class="painel-lateral hidden">
+        <h3>Histórico</h3>
         <div id="hist"></div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Calculadora principal -->
+    <div class="painel">
+
+        <!-- Cabeçalho com usuário e tipo -->
+        <div id="cabecalho">
+            <span id="nome-usuario">Olá, usuário</span>
+            <span id="badge-tipo" class="badge gratuito">Gratuito</span>
+            <button class="btn-link" onclick="toggleHistorico()">Histórico</button>
+            <button class="btn-link" onclick="togglePerfil()">Perfil</button>
+        </div>
+
+        <!-- Aviso de usos restantes (gratuito) -->
+        <div id="aviso-usos" class="aviso hidden"></div>
+
+        <!-- Display -->
+        <div id="resultado">
+            <input type="text" id="display" placeholder="0" readonly>
+        </div>
+
+        <!-- Teclado -->
+        <div id="teclas">
+            <!-- Linha 1 -->
+            <button class="botoes funcao" data-valor="clear">C</button>
+            <button class="botoes funcao" data-valor="(">(</button>
+            <button class="botoes funcao" data-valor=")">)</button>
+            <button class="botoes operador" data-valor="/">÷</button>
+
+            <!-- Linha 2 -->
+            <button class="botoes numero" data-valor="7">7</button>
+            <button class="botoes numero" data-valor="8">8</button>
+            <button class="botoes numero" data-valor="9">9</button>
+            <button class="botoes operador" data-valor="*">×</button>
+
+            <!-- Linha 3 -->
+            <button class="botoes numero" data-valor="4">4</button>
+            <button class="botoes numero" data-valor="5">5</button>
+            <button class="botoes numero" data-valor="6">6</button>
+            <button class="botoes operador" data-valor="-">−</button>
+
+            <!-- Linha 4 -->
+            <button class="botoes numero" data-valor="1">1</button>
+            <button class="botoes numero" data-valor="2">2</button>
+            <button class="botoes numero" data-valor="3">3</button>
+            <button class="botoes operador" data-valor="+">+</button>
+
+            <!-- Linha 5 -->
+            <button class="botoes potencia" data-valor="^">xʸ</button>
+            <button class="botoes numero" data-valor="0">0</button>
+            <button class="botoes numero" data-valor=".">.</button>
+            <button class="botoes" id="igual" data-valor="=">=</button>
+
+            <!-- Linha 6: funções especiais -->
+            <button class="botoes especial" data-valor="sqrt(" title="Raiz quadrada">√</button>
+            <button class="botoes especial" data-valor="nthRoot(" title="Raiz N-ésima: nthRoot(x, n)">ⁿ√</button>
+            <button class="botoes especial btn-ranking" onclick="toggleRanking()">📊</button>
+            <button class="botoes especial btn-backspace" data-valor="backspace">⌫</button>
+        </div>
+
+        <!-- Dica de uso -->
+        <div id="dica">
+            <small>
+                Potência: <code>2^8</code> &nbsp;|&nbsp;
+                Raiz: <code>sqrt(16)</code> &nbsp;|&nbsp;
+                Raiz N: <code>nthRoot(27,3)</code> &nbsp;|&nbsp;
+                Parênteses: <code>(2+3)*4</code>
+            </small>
+        </div>
+    </div>
+
+    <!-- Painel lateral: ranking -->
+    <div id="painel-ranking" class="painel-lateral hidden">
+        <h3>Ranking de Operações</h3>
+        <div id="ranking-content">Carregando...</div>
+    </div>
+
+</div>
+
+<!-- Modal de perfil -->
+<div id="modal-perfil" class="modal hidden">
+    <div class="modal-box">
+        <h3>Meu Perfil</h3>
+        <div id="perfil-info"></div>
+        <button onclick="togglePerfil()" class="btn-fechar">Fechar</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

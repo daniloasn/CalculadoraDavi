@@ -1,27 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Criar Conta - CalculadoraDavi</title>
 </head>
 <body>
-    
-    <div class="container">
 
+<div class="container">
     <h2>Criar Conta</h2>
 
-    <input type="text" id="nome" placeholder="Nome">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="senha" placeholder="Senha">
+    <input type="text"     id="nome"         placeholder="Nome completo">
+    <input type="email"    id="email"         placeholder="Email">
+    <input type="password" id="senha"         placeholder="Senha">
+    <input type="text"     id="instituicao"   placeholder="Instituição (ex: FATEC, USP)">
 
-    <button onclick="cadastrar()">Cadastrar</button>
+    <select id="escolaridade">
+        <option value="">Escolaridade</option>
+        <option value="Fundamental">Fundamental</option>
+        <option value="Médio">Médio</option>
+        <option value="Técnico">Técnico</option>
+        <option value="Superior">Superior</option>
+        <option value="Pós-graduação">Pós-graduação</option>
+    </select>
 
+    <input type="text" id="endereco" placeholder="Cidade - Estado (ex: São Paulo - SP)">
+
+    <div class="tipo-plano">
+        <label>Tipo de plano:</label>
+        <div class="opcoes-plano">
+            <label class="opcao-plano">
+                <input type="radio" name="tipo" value="gratuito" checked>
+                <span class="plano-card">
+                    <strong>Gratuito</strong>
+                    <small>Até 10 cálculos/mês</small>
+                </span>
+            </label>
+            <label class="opcao-plano">
+                <input type="radio" name="tipo" value="pago">
+                <span class="plano-card destaque">
+                    <strong>Pago</strong>
+                    <small>Cálculos ilimitados</small>
+                </span>
+            </label>
+        </div>
+    </div>
+
+    <div id="mensagem" class="mensagem hidden"></div>
+
+    <button onclick="cadastrar()">Criar Conta</button>
     <p>Já tem conta? <a href="login.html">Entrar</a></p>
-
 </div>
 
-    <script src="cadastro.js"></script>
+<script src="cadastro.js"></script>
 </body>
 </html>

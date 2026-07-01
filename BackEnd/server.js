@@ -1,28 +1,35 @@
-const fastify = require("fastify")({ logger: true }); //cria a parada toda(server)
-const cors = require("@fastify/cors"); //importa os plugins do cors(é o que permite o front acessar o back)
+const fastify = require("fastify")({ logger: true });
+const cors = require("@fastify/cors");
 
-
-
+// Configuração do CORS
 fastify.register(cors, {
-    origin: "*" //origin "*" qualquer front pode acessar
+    origin: "*"
 });
 
-fastify.register(require("./rotas/calcular")); //importa os dados do calcular.js
-fastify.register(require("./rotas/historico"))
+// Registro das rotas
+fastify.register(require("./rotas/calcular"));
+fastify.register(require("./rotas/historico"));
 fastify.register(require("./rotas/auth"));
+fastify.register(require("./rotas/ranking")); // nova rota
 
-fastify.get("/", async () => { //pra saber se o server ta bom
+// Rota de teste
+fastify.get("/", async () => {
     return { ok: true };
 });
 
-const start = async () => { //função que inicia o server
+// Inicialização do servidor
+const start = async () => {
     try {
-        await fastify.listen({ port: 3000 });
-        console.log("Servidor rodando em http://localhost:3000"); //console pra saber se ta funcionando
+        await fastify.listen({
+            port: 3000,
+            host: "0.0.0.0"
+        });
+
+        console.log("Servidor rodando em http://localhost:3000");
     } catch (err) {
-        fastify.log.error(err); //se não da erro e evita cair a parada
+        fastify.log.error(err);
         process.exit(1);
     }
 };
 
-start(); // chama a função e liga tudo
+start();
