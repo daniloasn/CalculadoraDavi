@@ -10,88 +10,137 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(135deg, #1e1e1e, #2b2b2b);
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
-h1 {
-    color: #00ffcc;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    display: inline-block;
-    transition: 0.2s;
+/* Layout principal */
+.tela-principal {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
 }
 
-h1:hover {
-    background-color: rgba(0, 255, 204, 0.1);
-}
-
-
+/* Calculadora */
 .painel {
     background: #0f0f0f;
-    width: 400px;
+    width: 380px;
     padding: 20px;
     border-radius: 16px;
     box-shadow: 0 0 25px rgba(0,0,0,0.9);
 }
 
+/* Cabeçalho */
+#cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
 
+#nome-usuario {
+    color: #aaa;
+    font-size: 0.85em;
+    flex: 1;
+}
+
+.badge {
+    font-size: 0.7em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge.gratuito {
+    background: #555;
+    color: #ccc;
+}
+
+.badge.pago {
+    background: linear-gradient(135deg, #f5a623, #e8900a);
+    color: #000;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #00ffcc;
+    cursor: pointer;
+    font-size: 0.8em;
+    padding: 3px 6px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn-link:hover {
+    background: rgba(0,255,204,0.1);
+}
+
+/* Aviso de usos */
+.aviso {
+    background: rgba(255, 149, 0, 0.15);
+    border: 1px solid #ff9500;
+    color: #ff9500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.82em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.aviso.erro {
+    background: rgba(255, 60, 60, 0.15);
+    border-color: #ff3c3c;
+    color: #ff3c3c;
+}
+
+/* Display */
 #resultado {
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 #display {
     width: 100%;
-    height: 90px;
-
-    font-size: 2.5em;
+    height: 80px;
+    font-size: 2.2em;
     text-align: right;
-
-    padding: 15px;
-    
+    padding: 10px 15px;
     border: none;
     border-radius: 14px;
-
     background: #050505;
     color: #00ffcc;
-
     box-shadow: inset 0 0 12px rgba(0,0,0,0.9);
-
     outline: none;
+    cursor: default;
 }
 
-
+/* Teclado */
 #teclas {
     display: grid;
-    grid-template-columns: repeat(4, 70px);
-    gap: 15px;
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
-
 
 .botoes {
     background: linear-gradient(145deg, #2e2e2e, #1a1a1a);
-    height: 70px;
-    width: 70px;
+    height: 65px;
     border-radius: 50%;
-    font-size: 1.5em;
+    font-size: 1.3em;
     border: none;
     color: white;
     cursor: pointer;
-
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.8), 
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8),
                 -2px -2px 6px rgba(255,255,255,0.05);
-
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
 }
 
 .botoes:hover {
     background: linear-gradient(145deg, #3a3a3a, #222);
+    transform: scale(1.04);
 }
 
 .botoes:active {
@@ -99,64 +148,177 @@ h1:hover {
     box-shadow: inset 2px 2px 6px rgba(0,0,0,0.8);
 }
 
-
 .operador {
     background: linear-gradient(145deg, #ff9500, #cc7700);
+    color: #000;
+    font-weight: bold;
 }
 
+.funcao {
+    background: linear-gradient(145deg, #3a3a3a, #252525);
+    color: #ccc;
+}
+
+.potencia {
+    background: linear-gradient(145deg, #7b2fff, #5a1ccc);
+    font-weight: bold;
+}
+
+.especial {
+    background: linear-gradient(145deg, #005f5f, #003d3d);
+    color: #00ffcc;
+    font-size: 1em;
+    border-radius: 12px;
+}
+
+.btn-backspace {
+    background: linear-gradient(145deg, #4a1010, #300);
+    color: #ff6666;
+}
 
 #igual {
     background: linear-gradient(145deg, #00ffcc, #00c9a7);
     color: black;
     font-weight: bold;
+    font-size: 1.5em;
 }
 
-
-button[data-valor="0"] {
-    grid-column: 2;
+/* Dica */
+#dica {
+    margin-top: 12px;
+    text-align: center;
+    color: #555;
+    line-height: 1.6;
 }
 
-
-.hidden {
-    display: none;
-}
-
-#dois {
-    width: 300px;
-    margin-left: 15px;
-    animation: aparecer 0.3s ease;
-}
-
-#hist {
-    background: #050505;
+#dica code {
     color: #00ffcc;
-    padding: 15px;
-    border-radius: 12px;
-    height: 500px;
-    overflow-y: auto;
-    font-size: 1.1em;
+    background: rgba(0,255,204,0.08);
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 0.9em;
 }
 
+/* Painéis laterais */
+.painel-lateral {
+    background: #0f0f0f;
+    width: 260px;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    animation: aparecer 0.3s ease;
+    max-height: 560px;
+    overflow-y: auto;
+}
 
+.painel-lateral h3 {
+    color: #00ffcc;
+    margin-bottom: 12px;
+    font-size: 1em;
+    border-bottom: 1px solid #222;
+    padding-bottom: 8px;
+}
+
+/* Histórico */
 #hist p {
     padding: 8px;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     cursor: pointer;
+    color: #00ffcc;
+    font-size: 0.95em;
     transition: 0.2s;
+    border-radius: 6px;
 }
 
 #hist p:hover {
     background-color: rgba(0,255,204,0.1);
 }
 
+/* Ranking */
+.ranking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.ranking-item:first-child {
+    background: linear-gradient(135deg, #1a3a2a, #0f2a1a);
+    color: #00ffcc;
+    font-weight: bold;
+}
+
+.ranking-badge {
+    background: #333;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-box {
+    background: #1a1a1a;
+    padding: 24px;
+    border-radius: 16px;
+    width: 340px;
+    color: #ccc;
+}
+
+.modal-box h3 {
+    color: #00ffcc;
+    margin-bottom: 16px;
+}
+
+.perfil-linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.9em;
+}
+
+.perfil-linha span:first-child {
+    color: #888;
+}
+
+.perfil-linha span:last-child {
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-fechar {
+    margin-top: 16px;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #00ffcc, #00c9a7);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
 
 @keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(15px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
